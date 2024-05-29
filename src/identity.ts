@@ -8,7 +8,7 @@ const identity = writable({
 })
 
 async function logout() {
-    const response = await fetch("http://localhost:3000/auth", {
+    const response = await fetch("http://localhost:3000/auth/", {
         method: "DELETE",
         mode: "cors",
         credentials: "include",
