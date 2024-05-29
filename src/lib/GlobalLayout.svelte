@@ -1,3 +1,25 @@
+<script context="module">
+    import { writable } from 'svelte/store';
+
+    function HeaderController() {
+        const { subscribe, __unused, update } = writable({
+            title: 'Untitled'
+        });
+
+        return {
+            subscribe,
+            setTitle(title) {
+                update((v) => {
+                    v.title = title;
+                    return v;
+                });
+            }
+        };
+    }
+
+    export const controller = new HeaderController();
+</script>
+
 <script lang="ts">
     import CircleUser from "lucide-svelte/icons/circle-user";
     import Menu from "lucide-svelte/icons/menu";
@@ -10,6 +32,7 @@
     import { Button } from "$lib/components/ui/button/index.js";
     import * as Card from "$lib/components/ui/card/index.js";
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+    import * as Dialog from "$lib/components/ui/dialog/index.js";
     import * as Sheet from "$lib/components/ui/sheet/index.js";
     import { Switch } from "$lib/components/ui/switch/index.js";
     import { Label } from "$lib/components/ui/label/index.js";
@@ -18,6 +41,7 @@
     import identity, { logout } from "../identity";
     import { socket } from "../main";
     import { toggleMode } from "mode-watcher";
+    import {toast} from "svelte-sonner";
 
     let count = -1;
 
@@ -69,7 +93,11 @@
                 </Sheet.Content>
             </Sheet.Root>
 
-            <div class="w-full flex-1" />
+            <div class="w-full flex-1">
+                <h1 class="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-2xl">
+                    {$controller.title}
+                </h1>
+            </div>
             <Button on:click={toggleMode} variant="outline" size="icon">
                 <Sun
                         class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
@@ -83,10 +111,10 @@
                 <DropdownMenu.Trigger asChild let:builder>
                     <Button
                             builders={[builder]}
-                            variant="secondary"
+                            variant="ghost"
                             size="icon"
                     >
-                        <CircleUser class="h-5 w-5" />
+                        <img src="http://localhost:3000/users/{$identity.id}/image" alt="{$identity.username}"class="rounded-full" />
                         <span class="sr-only">Toggle user menu</span>
                     </Button>
                 </DropdownMenu.Trigger>

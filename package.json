@@ -31,6 +31,7 @@
     "formsnap": "^1.0.0",
     "lucide-svelte": "^0.379.0",
     "mode-watcher": "^0.3.0",
+    "page": "^1.11.6",
     "paneforge": "^0.0.4",
     "socket.io-client": "^4.7.5",
     "svelte-sonner": "^0.3.24",

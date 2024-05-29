@@ -10,14 +10,6 @@
     import { Label } from "$lib/components/ui/label/index.js";
 
     let displayRegisterMenu = false;
-    const instance = axios.create({
-        baseURL: "http://localhost:3000",
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-    })
 
     async function handleAuth() {
         const response = await fetch("http://localhost:3000/auth/", {

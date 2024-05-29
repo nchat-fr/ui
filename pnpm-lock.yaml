@@ -32,6 +32,9 @@ dependencies:
   mode-watcher:
     specifier: ^0.3.0
     version: 0.3.0(svelte@4.2.17)
+  page:
+    specifier: ^1.11.6
+    version: 1.11.6
   paneforge:
     specifier: ^0.0.4
     version: 0.0.4(svelte@4.2.17)
@@ -1340,6 +1343,10 @@ packages:
     dependencies:
       '@types/estree': 1.0.5
 
+  /isarray@0.0.1:
+    resolution: {integrity: sha512-D2S+3GLxWH+uhrNEcoh/fnmYeP8E8/zHl644d/jdA0g2uyXvy3sb0qxotE+ne0LtccHknQzWwZEzhak7oJ0COQ==}
+    dev: false
+
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
@@ -1556,6 +1563,12 @@ packages:
       wrappy: 1.0.2
     dev: true
 
+  /page@1.11.6:
+    resolution: {integrity: sha512-P6e2JfzkBrPeFCIPplLP7vDDiU84RUUZMrWdsH4ZBGJ8OosnwFkcUkBHp1DTIjuipLliw9yQn/ZJsXZvarsO+g==}
+    dependencies:
+      path-to-regexp: 1.2.1
+    dev: false
+
   /paneforge@0.0.4(svelte@4.2.17):
     resolution: {integrity: sha512-0JRqGHLCGU9MfoIv7lAtzUrCRfaHDkE63xQV5OC7MZ19lbXZntZsdZ3+tsWM8iDZfwmhYrQl1cCioUjorI+Apg==}
     peerDependencies:
@@ -1590,6 +1603,12 @@ packages:
     dependencies:
       lru-cache: 10.2.2
       minipass: 7.1.2
+
+  /path-to-regexp@1.2.1:
+    resolution: {integrity: sha512-DBw9IhWfevR2zCVwEZURTuQNseCvu/Q9f5ZgqMCK0Rh61bDa4uyjPAOy9b55yKiPT59zZn+7uYKxmWwsguInwg==}
+    dependencies:
+      isarray: 0.0.1
+    dev: false
 
   /periscopic@3.1.0:
     resolution: {integrity: sha512-vKiQ8RRtkl9P+r/+oefh25C3fhybptkHKCZSPlcXiJux2tJF55GnEj3BVn4A5gKfq9NWWXXrxkHBwVPUfH0opw==}
