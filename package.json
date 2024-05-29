@@ -32,6 +32,7 @@
     "lucide-svelte": "^0.379.0",
     "mode-watcher": "^0.3.0",
     "paneforge": "^0.0.4",
+    "socket.io-client": "^4.7.5",
     "svelte-sonner": "^0.3.24",
     "sveltekit-superforms": "^2.14.0",
     "tailwind-merge": "^2.3.0",

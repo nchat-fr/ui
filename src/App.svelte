@@ -9,5 +9,7 @@
 <Toaster richColors />
 
 <AuthHandler>
-    <GlobalLayout />
+    <GlobalLayout>
+
+    </GlobalLayout>
 </AuthHandler>

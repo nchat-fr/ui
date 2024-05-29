@@ -4,6 +4,7 @@
     import MessagesSquare from "lucide-svelte/icons/messages-square";
     import Sun from "lucide-svelte/icons/sun";
     import Moon from "lucide-svelte/icons/moon";
+    import Radio from "lucide-svelte/icons/radio"
 
     import { Badge } from "$lib/components/ui/badge/index.js";
     import { Button } from "$lib/components/ui/button/index.js";
@@ -14,17 +15,26 @@
     import { Label } from "$lib/components/ui/label/index.js";
 
     import identity, { logout } from "../identity";
+    import { socket } from "../main";
     import { toggleMode } from "mode-watcher";
+
+    let count = -1;
+    socket.on('count', (c) => { count = c });
 </script>
 
 <div class="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
     <div class="hidden border-r bg-muted/40 md:block">
         <div class="flex h-full max-h-screen flex-col gap-2">
-            <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+            <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 justify-between">
                 <a href="/" class="flex items-center gap-2 font-semibold">
                     <MessagesSquare class="h-6 w-6" />
                     <span class="">NChat</span>
                 </a>
+
+                <div class="flex flex-row gap-2 items-center">
+                    {count}
+                    <Radio class="h-4 w-4" style="color: red"/>
+                </div>
             </div>
             <div class="flex-1">
                 <nav class="grid items-start px-2 text-sm font-medium lg:px-4">
