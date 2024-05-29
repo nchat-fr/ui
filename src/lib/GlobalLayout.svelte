@@ -14,11 +14,14 @@
     import { Switch } from "$lib/components/ui/switch/index.js";
     import { Label } from "$lib/components/ui/label/index.js";
 
+    import { get } from "svelte/store";
     import identity, { logout } from "../identity";
     import { socket } from "../main";
     import { toggleMode } from "mode-watcher";
 
     let count = -1;
+
+    socket.emit("auth", get(identity))
     socket.on('count', (c) => { count = c });
 </script>
 
