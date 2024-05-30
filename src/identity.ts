@@ -2,11 +2,13 @@ import {get, writable} from "svelte/store";
 import { socket } from "./main";
 import { toast } from "svelte-sonner";
 
-const identity = writable({
+const _DEFAULT_IDENTITY = {
     id: null,
     username: null,
     mail: null
-})
+}
+
+const identity = writable(_DEFAULT_IDENTITY);
 
 async function logout() {
     let _identity = get(identity);
@@ -21,8 +23,8 @@ async function logout() {
     });
 
     if (response.status === 500) { toast.error("Une erreur inconnue est survenue..."); return; }
-    socket.emit("logout", _identity)
-    location.reload();
+    socket.emit("logout", _identity);
+    identity.set(_DEFAULT_IDENTITY);
 }
 
 export { logout };
