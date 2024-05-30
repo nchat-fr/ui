@@ -8,6 +8,7 @@
 
 	let className: $$Props["class"] = undefined;
 	export let value: $$Props["value"] = undefined;
+	export let files: $$Props["files"] = undefined;
 	export { className as class };
 
 	// Workaround for https://github.com/sveltejs/svelte/issues/9305

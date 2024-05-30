@@ -21,33 +21,30 @@
 </script>
 
 <script lang="ts">
-    import CircleUser from "lucide-svelte/icons/circle-user";
     import Menu from "lucide-svelte/icons/menu";
     import MessagesSquare from "lucide-svelte/icons/messages-square";
     import Sun from "lucide-svelte/icons/sun";
     import Moon from "lucide-svelte/icons/moon";
     import Radio from "lucide-svelte/icons/radio"
 
-    import { Badge } from "$lib/components/ui/badge/index.js";
+    import ModalController from "$lib/modals/index.svelte"
     import { Button } from "$lib/components/ui/button/index.js";
-    import * as Card from "$lib/components/ui/card/index.js";
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-    import * as Dialog from "$lib/components/ui/dialog/index.js";
     import * as Sheet from "$lib/components/ui/sheet/index.js";
-    import { Switch } from "$lib/components/ui/switch/index.js";
-    import { Label } from "$lib/components/ui/label/index.js";
 
     import { get } from "svelte/store";
     import identity, { logout } from "../identity";
     import { socket } from "../main";
     import { toggleMode } from "mode-watcher";
-    import {toast} from "svelte-sonner";
+    import { controller as ChangeProfilePictureModalController } from "$lib/modals/ChangeProfilePictureModal.svelte";
 
     let count = -1;
 
     socket.emit("auth", get(identity))
     socket.on('count', (c) => { count = c });
 </script>
+
+<ModalController />
 
 <div class="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
     <div class="hidden border-r bg-muted/40 md:block">
@@ -121,6 +118,7 @@
                 <DropdownMenu.Content align="end">
                     <DropdownMenu.Label>My account: {$identity.username}</DropdownMenu.Label>
                     <DropdownMenu.Separator />
+                    <DropdownMenu.Item on:click={() => {ChangeProfilePictureModalController.open()}}>Change profile picture</DropdownMenu.Item>
                     <DropdownMenu.Item on:click={logout}>Logout</DropdownMenu.Item>
                 </DropdownMenu.Content>
             </DropdownMenu.Root>
