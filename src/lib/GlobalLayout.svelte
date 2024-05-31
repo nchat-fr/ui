@@ -34,6 +34,7 @@
 
     import { get } from "svelte/store";
     import identity, { logout } from "../identity";
+    import base_url from "../config";
     import { socket } from "../main";
     import { toggleMode } from "mode-watcher";
     import { controller as ChangeProfilePictureModalController } from "$lib/modals/ChangeProfilePictureModal.svelte";
@@ -111,7 +112,7 @@
                             variant="ghost"
                             size="icon"
                     >
-                        <img src="http://localhost:3000/users/{$identity.id}/image" alt="{$identity.username}"class="rounded-full" />
+                        <img src="{base_url}/users/{$identity.id}/image" alt="{$identity.username}"class="rounded-full" />
                         <span class="sr-only">Toggle user menu</span>
                     </Button>
                 </DropdownMenu.Trigger>

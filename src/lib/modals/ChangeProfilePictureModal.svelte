@@ -29,6 +29,7 @@
 
     import api from "../../api";
     import identity from "../../identity";
+    import base_url from "../../config";
 
     let files: any;
     async function changeProfilePicture() {
@@ -37,7 +38,7 @@
             form_data.append('file', files[0]);
             console.log(files[0]);
 
-            const request = new Request(`http://localhost:3000/users/${get(identity).id}/image`, {
+            const request = new Request(`${base_url}/users/${get(identity).id}/image`, {
                 method: 'POST',
                 mode: 'cors',
                 credentials: 'include',
@@ -47,7 +48,7 @@
             const response = await api.request(request);
 
             // update image dynamically
-            const url = `http://localhost:3000/users/${get(identity).id}/image`;
+            const url = `${base_url}/users/${get(identity).id}/image`;
             const images = document.body.querySelectorAll(`img[src='${url}']`);
             for (let i = 0; i < images.length; i++) { images[i].src = url }
 
