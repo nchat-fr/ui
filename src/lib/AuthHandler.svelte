@@ -1,8 +1,8 @@
 <script lang="ts">
     import identity from "../identity";
+    import base_url from "../config";
     import { get } from "svelte/store";
     import { toast } from "svelte-sonner";
-    import axios from "axios";
 
     import { Button } from "$lib/components/ui/button/index.js";
     import * as Card from "$lib/components/ui/card/index.js";
@@ -12,7 +12,7 @@
     let displayRegisterMenu = false;
 
     async function handleAuth() {
-        const response = await fetch("http://localhost:3000/auth/", {
+        const response = await fetch(base_url + "/auth/", {
             method: "GET",
             mode: "cors",
             credentials: "include",
@@ -32,7 +32,7 @@
     let username: null;
 
     async function login() {
-        const response = await fetch("http://localhost:3000/auth/login", {
+        const response = await fetch(base_url + "/auth/login", {
             method: "POST",
             mode: "cors",
             credentials: "include",
@@ -52,7 +52,7 @@
     }
 
     async function register() {
-        const response = await fetch("http://localhost:3000/auth/register", {
+        const response = await fetch(base_url + "/auth/register", {
             method: "POST",
             mode: "cors",
             credentials: "include",

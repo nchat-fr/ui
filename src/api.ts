@@ -1,3 +1,5 @@
+import base_url from "./config";
+
 class ApiError extends Error {
     constructor(response: any, json: any, text: any) {
         super(response.statusText);
@@ -43,7 +45,7 @@ class Api {
     }
 
     async get(url: string) {
-        const request = new Request(`http://localhost:3000/${url}/`, {
+        const request = new Request(`${base_url}/${url}/`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -56,7 +58,7 @@ class Api {
     }
 
     async post(url: string, body: any) {
-        const request = new Request(`http://localhost:3000/${url}`, {
+        const request = new Request(`${base_url}/${url}`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -70,7 +72,7 @@ class Api {
     }
 
     async put(url: string, body: any) {
-        const request = new Request(`http://localhost:3000/${url}`, {
+        const request = new Request(`${base_url}/${url}`, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
@@ -84,7 +86,7 @@ class Api {
     }
 
     async patch(url: string, body: any) {
-        const request = new Request(`http://localhost:3000/${url}`, {
+        const request = new Request(`${base_url}/${url}`, {
             method: 'PATCH',
             headers: {
                 Accept: 'application/json',
@@ -98,7 +100,7 @@ class Api {
     }
 
     async delete(url: string) {
-        const request = new Request(`http://localhost:3000/${url}`, {
+        const request = new Request(`${base_url}/${url}`, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',

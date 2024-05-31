@@ -1,9 +1,10 @@
 import { io } from "socket.io-client"
+import url from "./config";
 
 import './app.css'
 import App from './App.svelte'
 
-const socket = io("http://localhost:3000", {
+const socket = io(url, {
   path: '/ws/socket.io',
   transports: ["websocket"]
 });

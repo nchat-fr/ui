@@ -1,6 +1,7 @@
 import {get, writable} from "svelte/store";
 import { socket } from "./main";
 import { toast } from "svelte-sonner";
+import url from "./config";
 
 const _DEFAULT_IDENTITY = {
     id: null,
@@ -13,7 +14,7 @@ const identity = writable(_DEFAULT_IDENTITY);
 async function logout() {
     let _identity = get(identity);
 
-    const response = await fetch("http://localhost:3000/auth/", {
+    const response = await fetch(url + "/auth/", {
         method: "DELETE",
         mode: "cors",
         credentials: "include",
