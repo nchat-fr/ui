@@ -33,7 +33,7 @@
                     <p class="text-sm text-muted-foreground">{sender.username}</p>
                 </div>
             {/if}
-            <p class="break-all max-w-xl min-w-12 bg-accent text-white text-justify" style="padding: 10px; border-radius: 5px">
+            <p class="break-all max-w-xl min-w-12 bg-accent text-justify" style="padding: 10px; border-radius: 5px">
                 {@html message}
             </p>
         </div>
