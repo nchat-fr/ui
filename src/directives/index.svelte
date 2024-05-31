@@ -17,8 +17,12 @@
     header.setTitle("Global Chat");
 
     let messages: any = [];
+    let last_message_sender: number = 0;
+
     socket.on('message', function(payload) {
-        messages = [...messages, payload]
+        payload.display = last_message_sender !== payload.identity.id ? true:false;
+        messages = [...messages, payload];
+        last_message_sender = payload.identity.id;
     })
 
     let message: any = null;
@@ -38,7 +42,7 @@
 <div style="height: calc( 100vh - 250px )" id="scroll">
     <ScrollArea class="w-full h-full p-4">
         {#each messages as message}
-            <Message sender={message.identity} message={message.message} />
+            <Message sender={message.identity} message={message.message} display_sender={message.display} />
         {/each}
     </ScrollArea>
 </div>
