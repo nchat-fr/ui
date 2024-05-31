@@ -1,6 +1,7 @@
 <script lang="ts">
     import { get } from "svelte/store";
     import identity from "../identity";
+    import SvelteMarkdown from "svelte-markdown";
 
     import Paperclip from "lucide-svelte/icons/paperclip";
     import Mic from "lucide-svelte/icons/mic";
@@ -64,12 +65,16 @@
     <ScrollArea class="w-full h-full p-4">
         {#await getMessageHistory() then _}
             {#each messages_history as message}
-                <Message sender={message.user} message={message.text} display_sender={message.display} />
+                <Message sender={message.user} display_sender={message.display}>
+                    <SvelteMarkdown source={message.text} />
+                </Message>
             {/each}
         {/await}
 
         {#each messages as message}
-            <Message sender={message.identity} message={message.message} display_sender={message.display} />
+            <Message sender={message.identity} display_sender={message.display}>
+                <SvelteMarkdown source={message.message} />
+            </Message>
         {/each}
     </ScrollArea>
 </div>

@@ -5,23 +5,21 @@
     import base_url from "../config";
 
     export let sender: any;
-    export let message: string;
     export let display_sender: boolean;
 
     onMount(() => {
         const scrolldiv = document.getElementById('scroll');
         const last = scrolldiv?.children[0].children[1].children[0].lastElementChild;
         last?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        last?.children[0].children[0].innerHTML.replace("\n", "<br />");
     })
 </script>
 
 {#if $identity.id === sender.id}
     <div class="flex flex-row justify-end mt-{display_sender ? 4:2}">
         <div>
-            <p class="break-all max-w-xl min-w-12 bg-primary text-white text-justify" style="padding: 10px; border-radius: 5px">
-                {@html message}
-            </p>
+            <div class="break-all max-w-xl min-w-12 bg-primary text-white text-justify" style="padding: 10px; border-radius: 5px">
+                <slot />
+            </div>
         </div>
     </div>
 {:else}
@@ -33,9 +31,9 @@
                     <p class="text-sm text-muted-foreground">{sender.username}</p>
                 </div>
             {/if}
-            <p class="break-all max-w-xl min-w-12 bg-accent text-justify" style="padding: 10px; border-radius: 5px">
-                {@html message}
-            </p>
+            <div class="break-all max-w-xl min-w-12 bg-accent text-justify" style="padding: 10px; border-radius: 5px">
+                <slot />
+            </div>
         </div>
     </div>
 {/if}
