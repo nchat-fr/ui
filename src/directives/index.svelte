@@ -14,8 +14,11 @@
     import { controller as header } from "$lib/GlobalLayout.svelte";
     import { socket } from "../main";
     import Message from "$lib/Message.svelte";
+    import api from "../api";
+    import {toast} from "svelte-sonner";
     header.setTitle("Global Chat");
 
+    let messages_history: any = [];
     let messages: any = [];
     let last_message_sender: number = 0;
 
@@ -37,10 +40,34 @@
             document.getElementById('submitForm')?.click();
         }
     }
+
+    async function getMessageHistory() {
+        try {
+            const response = await api.get("messages");
+            messages_history = [];
+
+            for (const message of response) {
+                message.display = last_message_sender !== message.user_id ? true:false;
+                messages_history.push(message);
+                last_message_sender = message.user_id;
+            }
+
+            messages_history = [...messages_history];
+        } catch (e) {
+            console.log(e);
+            toast.error("Failed to fetch messages history.");
+        }
+    }
 </script>
 
 <div style="height: calc( 100vh - 250px )" id="scroll">
     <ScrollArea class="w-full h-full p-4">
+        {#await getMessageHistory() then _}
+            {#each messages_history as message}
+                <Message sender={message.user} message={message.text} display_sender={message.display} />
+            {/each}
+        {/await}
+
         {#each messages as message}
             <Message sender={message.identity} message={message.message} display_sender={message.display} />
         {/each}
