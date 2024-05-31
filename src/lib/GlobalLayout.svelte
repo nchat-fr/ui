@@ -39,10 +39,10 @@
     import { toggleMode } from "mode-watcher";
     import { controller as ChangeProfilePictureModalController } from "$lib/modals/ChangeProfilePictureModal.svelte";
 
-    let count = -1;
+    let clients = {};
 
     socket.emit("auth", get(identity))
-    socket.on('count', (c) => { count = c });
+    socket.on('clients', (c) => { clients = c });
 </script>
 
 <ModalController />
@@ -57,7 +57,7 @@
                 </a>
 
                 <div class="flex flex-row gap-2 items-center">
-                    {count}
+                    {Object.keys(clients).length}
                     <Radio class="h-4 w-4" style="color: red"/>
                 </div>
             </div>
